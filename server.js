@@ -3,49 +3,24 @@ var url = require("url"),
     http = require("http"),
     path = require("path");
 http.createServer(function (req, res) {
-	
-	// 资源指向docs目录
-  var pathname = __dirname + url.parse("/"+req.url).pathname;
-  if (path.extname(pathname) == "") {
-      pathname += "/";
-  }
-  if (pathname.charAt(pathname.length - 1) == "/") {
-      pathname += "index.html";
-  }
-	pathname = decodeURIComponent(pathname);
-  fs.exists(pathname, function (exists) {
-      if (exists) {
-          switch(path.extname(pathname)){
-              case ".html":
-                  res.writeHead(200, {"Content-Type": "text/html"});
-                  break;
-              case ".js":
-                  res.writeHead(200, {"Content-Type": "text/javascript"});
-                  break;
-              case ".css":
-                  res.writeHead(200, {"Content-Type": "text/css"});
-                  break;
-              case ".gif":
-                  res.writeHead(200, {"Content-Type": "image/gif"});
-                  break;
-              case ".jpg":
-                  res.writeHead(200, {"Content-Type": "image/jpeg"});
-                  break;
-              case ".png":
-                  res.writeHead(200, {"Content-Type": "image/png"});
-                  break;
-              default:
-                  res.writeHead(200, {"Content-Type": "application/octet-stream"});
-          }
-          fs.readFile(pathname, function (err, data) {
-              res.end(data);
-          });
-      } else {
-          res.writeHead(404, {
-              "Content-Type": "text/html"
-          });
-          res.end("<h1>404 Not Found</h1>");
-      }
-  });
+
+    var pathname = __dirname + url.parse(req.url).pathname;
+    if (pathname.charAt(pathname.length - 1) == "/") {
+        pathname += "index.html";
+    }
+	// 中文路径
+    // pathname = decodeURIComponent(pathname);
+    fs.exists(pathname, function (exists) {
+        if (exists) {
+            fs.readFile(pathname, function (err, data) {
+                res.end(data);
+            });
+        } else {
+            res.writeHead(404, {
+                "Content-Type": "text/html"
+            });
+            res.end("<h1>404 Not Found</h1>");
+        }
+    });
 }).listen(8080);
 console.log("监听8080端口");
