@@ -2,6 +2,10 @@ var url = require("url"),
     fs = require("fs"),
     http = require("http"),
     path = require("path");
+    port = 8080;
+    if (process.argv.length>2) {
+        port = process.argv[2];
+    }
 http.createServer(function (req, res) {
 
     var pathname = __dirname + url.parse(req.url).pathname;
@@ -22,5 +26,5 @@ http.createServer(function (req, res) {
             res.end("<h1>404 Not Found</h1>");
         }
     });
-}).listen(8080);
-console.log("监听8080端口");
+}).listen(port);
+console.log("listen: ", port);
