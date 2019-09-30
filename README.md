@@ -4,7 +4,8 @@
 
 * `（推荐）`
 
-> linux[./server下载](https://dev.tencent.com/u/wujing2417/p/docsify/git/blob/coding-pages/server) | windows[server.exe下载](https://dev.tencent.com/u/wujing2417/p/docsify/git/blob/coding-pages/server.exe)
+> linux: [./server下载](https://dev.tencent.com/u/wujing2417/p/docsify/git/raw/coding-pages/server)
+windows: [server.exe下载](https://dev.tencent.com/u/wujing2417/p/docsify/git/raw/coding-pages/server.exe)
 
 ```shell
 # linux
