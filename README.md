@@ -59,3 +59,12 @@ location ^~ /static/ {
     # autoindex on;
 }
 ```
+
+> ## 7 java
+
+```shell
+# 编译
+javac -encoding utf-8 Server.java
+# 启动
+java Server [8080]
+```
